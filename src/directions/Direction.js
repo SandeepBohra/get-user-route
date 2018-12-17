@@ -86,6 +86,11 @@ class Direction extends Component {
         }
     }
 
+    resetExistingRouteInformation = () => {
+        this.clearPerviousRoueteDetails();
+        this.initializeGoogleMaps();
+    }
+
     render() {
         return (
             <div className="Direction">
@@ -98,14 +103,12 @@ class Direction extends Component {
                     showRouteDistAndTime={this.state.showRouteDistAndTime}
                     routeDistance={this.state.routeDistance}
                     routeTime={this.state.routeTime}
+                    resetExistingRouteInformation={this.resetExistingRouteInformation}
                 />
                 </div>
                 <div className="error-container">
                     {this.state.errorMsg}
                 </div>
-                {/* <div className="map-container">
-                    <div id='map' ref={elem => (this.mapContainer = elem)}></div>
-                </div> */}
                 <MapComponent 
                     fieldRef={elem => (this.mapContainer = elem)}
                 />

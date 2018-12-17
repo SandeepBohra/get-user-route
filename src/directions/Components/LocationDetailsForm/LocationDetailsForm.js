@@ -37,7 +37,6 @@ class LocationDetailsForm extends Component {
     }
 
    enableSubmit = () => {
-       debugger
        const startingLocation = this.state.startingLocation
        const dropOffPoint = this.state.dropOffPoint
         return startingLocation && dropOffPoint
@@ -49,6 +48,20 @@ class LocationDetailsForm extends Component {
         this.setState({
             [name]: value,
         })
+    }
+
+    clearInputFields = () => {
+        this.setState({
+            startingLocation: '',
+            dropOffPoint: '',
+        })
+        this.originInput.value = '';
+        this.destInput.value = '';
+    }
+
+    resetLocationDetails = () => {
+        this.clearInputFields();
+        this.props.resetExistingRouteInformation()
     }
 
     render() {
