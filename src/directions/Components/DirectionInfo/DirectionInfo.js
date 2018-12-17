@@ -1,13 +1,13 @@
 import React,  { Component } from 'react';
 import './DirectionInfo.css'
 
-export const DirectionInfo = (props) => (
+export const DirectionInfo = ({totalDistance, totalTime}) => (
     <div className="DirectionInfo">
         <div className="route-distance">
-            <label>{`Total distance: ${props.totalDistance}`}</label>
+            <label>{`Total distance: ${totalDistance}`}</label>
         </div>
         <div className="route-time">
-            <label>{`Total time: ${props.totalTime}`}</label>
+            <label>{`Total time: ${totalTime}`}</label>
         </div>
     </div>
 )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { googleMaps } from '../../Services/googleMap'
+import { DirectionInfo } from '../DirectionInfo/DirectionInfo'
 import './LocationDetailsForm.css'
 
 
@@ -35,8 +36,9 @@ class LocationDetailsForm extends Component {
     }
 
    enableSubmit = () => {
-        debugger
-        return this.state.startingLocation && this.state.dropOffPoint
+       const startingLocation = this.state.startingLocation
+       const dropOffPoint = this.state.dropOffPoint
+        return startingLocation && dropOffPoint
     }
 
     handleChange = e => {
@@ -67,10 +69,10 @@ class LocationDetailsForm extends Component {
                     />
                 </div>
                 {this.props.showRouteDistAndTime ?
-                    <div className="route-details">
-                        <div>{`Total distance: ${routeDistance}`}</div>
-                        <div>{`Total time: ${routeTime}`}</div>
-                    </div>
+                    <DirectionInfo 
+                        totalDistance={routeDistance}
+                        totalTime={routeTime}
+                    />
                 : null}
                 <div className="form-buttons">
                     <button 
