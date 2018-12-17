@@ -9,7 +9,7 @@ const postUserLocations = async (orig, dest) => {
         orig,
         dest
     }
-    const response = await axios.post(url, payload);
+    const response = await axios.post(url, payload)
     return response.data.token;
 };
 
@@ -22,9 +22,10 @@ const getUserRoute = async token => {
 
 // POST and GET AJAX call to get the token and then use it to get the route
 export const getTokenAndRoute = async (orig, dest) => {
+    debugger
     const token = await postUserLocations(orig, dest);
     let response = await getUserRoute(token);
-    if (response && response.status === 'in progress') {
+    if (response && response.data.status === 'in progress') {
         response = await getTokenAndRoute(orig, dest);
     }
     return response;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LocationDetailsForm from './LocationDetailsForm/LocationDetailsForm';
 import { googleMaps } from '../Services/googleMap'
 import { getTokenAndRoute } from '../Services/getUserRoute'
+import { MOCK_API_ERROR } from '../Constants/errorTypes'
 import './Direction.css';
 
 
@@ -57,11 +58,24 @@ class Direction extends Component {
         })
     }
 
+    clearPerviousRoueteDetails = () => {
+        this.setState({
+            errorMsg: '',
+            routeDistance: '',
+            routeTime: '',
+            showRouteDistAndTime: false,
+        })
+    }
     sendLocationAndGetRoute = async (orig, dest) => {
         this.showLoader(true)
-        const response = await getTokenAndRoute(orig, dest);
+        this.clearPerviousRoueteDetails()
+        const response = await getTokenAndRoute(orig, dest).catch(e => {
+            this.setState({
+                errorMsg: MOCK_API_ERROR,
+            })
+        });;
         this.showLoader(false)
-        if(response.data && response.data.path) {
+        if(response && response.data.path) {
             this.setState({
                 showRouteDistAndTime: true,
                 routeDistance: response.data.total_distance,
@@ -69,7 +83,7 @@ class Direction extends Component {
             })
             const { path } = response.data
             this.drawRouteOnMap(path);
-        } else if(response.data && response.data.error) {
+        } else if(response && response.data.error) {
             this.setState({
                 errorMsg: response.data.error
             })
