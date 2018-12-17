@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import LocationDetailsForm from './LocationDetailsForm/LocationDetailsForm';
-import { googleMaps } from '../Services/googleMap'
-import { getTokenAndRoute } from '../Services/getUserRoute'
-import { MOCK_API_ERROR } from '../Constants/errorTypes'
+import LocationDetailsForm from './Components/LocationDetailsForm/LocationDetailsForm';
+import { googleMaps } from './Services/googleMap';
+import { getUserRouteAndToken } from './Services/mockAPIService/index';
+import { MOCK_API_ERROR } from './Constants/errorTypes';
+import { Loader, MapComponent } from '../Shared/Components/index'
 import './Direction.css';
 
 
@@ -10,11 +11,10 @@ class Direction extends Component {
     mapContainer
     constructor() {
         super();
-        this.localMapVariable = {};
+        this.googleMaps = {};
         this.renderMap = {};
         this.state = {
             isLoading: false,
-            routeReceived: null,
             showRouteDistAndTime: false,
             routeDistance: '',
             routeTime: '',
@@ -26,24 +26,20 @@ class Direction extends Component {
     }
     
     initializeGoogleMaps = async () => {
-        const mapSettings = {
-            zoom: 12,
-            center: { lat: 22.372081, lng: 114.107877 }
-        }
         const { googleMaps } = this.props
-        this.localMapVariable = await googleMaps();
-        this.renderMap = new this.localMapVariable.Map(this.mapContainer, mapSettings);
+        this.googleMaps = await googleMaps();
+        this.renderMap = new this.googleMaps.Map(this.mapContainer, this.props.mapSettings);
     }
 
     drawRouteOnMap = (path) => {
-        const directionService = new this.localMapVariable.DirectionsService();
-        const directionRenderer = new this.localMapVariable.DirectionsRenderer();
+        const directionService = new this.googleMaps.DirectionsService();
+        const directionRenderer = new this.googleMaps.DirectionsRenderer();
         const origin = path[0];
         const dest = path[path.length -1];
         directionRenderer.setMap(this.renderMap);
         directionService.route({
-            origin: new this.localMapVariable.LatLng(origin[0], origin[1]),
-            destination: new this.localMapVariable.LatLng(dest[0], dest[1]),
+            origin: new this.googleMaps.LatLng(origin[0], origin[1]),
+            destination: new this.googleMaps.LatLng(dest[0], dest[1]),
             travelMode: "DRIVING"
             },  (response, status) => {
             if (status === 'OK') {
@@ -69,7 +65,7 @@ class Direction extends Component {
     sendLocationAndGetRoute = async (orig, dest) => {
         this.showLoader(true)
         this.clearPerviousRoueteDetails()
-        const response = await getTokenAndRoute(orig, dest).catch(e => {
+        const response = await getUserRouteAndToken(orig, dest).catch(e => {
             this.setState({
                 errorMsg: MOCK_API_ERROR,
             })
@@ -90,20 +86,12 @@ class Direction extends Component {
         }
     }
 
-    renderLoader = () => {
-        return (
-            <div className="loader-container">
-                <div className="loader" />
-            </div>
-        )
-    }
-
     render() {
         return (
             <div className="Direction">
                 <div className="location-details-form">
                 {this.state.isLoading 
-                ? this.renderLoader()
+                ? <Loader />
                 : null}
                 <LocationDetailsForm
                     sendLocationAndGetRoute={this.sendLocationAndGetRoute}
@@ -115,9 +103,12 @@ class Direction extends Component {
                 <div className="error-container">
                     {this.state.errorMsg}
                 </div>
-                <div className="map-container">
+                {/* <div className="map-container">
                     <div id='map' ref={elem => (this.mapContainer = elem)}></div>
-                </div>
+                </div> */}
+                <MapComponent 
+                    fieldRef={elem => (this.mapContainer = elem)}
+                />
             </div>
         )
     }
@@ -127,4 +118,8 @@ export default Direction;
 
 Direction.defaultProps = {
     googleMaps,
+    mapSettings: {
+        zoom: 12,
+        center: { lat: 22.372081, lng: 114.107877 }
+    }
 }

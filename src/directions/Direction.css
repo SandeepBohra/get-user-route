@@ -1,0 +1,15 @@
+.Direction {
+    margin-left: 10px;
+}
+
+.location-details-form {
+    width: 25%;
+    height: 100%;
+}
+
+.error-container {
+  margin-top: 30px;
+  color: red;
+  font-size: 16px;
+  font-weight: 500;
+}
