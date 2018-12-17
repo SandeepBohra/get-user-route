@@ -1,0 +1,22 @@
+.LocationDetailsForm input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid black;
+}
+
+.LocationDetailsForm p {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-buttons button {
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 50px;
+}
+
+.route-details {
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: 500;
+}
