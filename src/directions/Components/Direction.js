@@ -17,6 +17,7 @@ class Direction extends Component {
             showRouteDistAndTime: false,
             routeDistance: '',
             routeTime: '',
+            errorMsg: '',
         }
     }
     componentDidMount() {
@@ -69,7 +70,9 @@ class Direction extends Component {
             const { path } = response.data
             this.drawRouteOnMap(path);
         } else if(response.data && response.data.error) {
-            alert(response.data.error);
+            this.setState({
+                errorMsg: response.data.error
+            })
         }
     }
 
@@ -94,6 +97,9 @@ class Direction extends Component {
                     routeDistance={this.state.routeDistance}
                     routeTime={this.state.routeTime}
                 />
+                </div>
+                <div className="error-container">
+                    {this.state.errorMsg}
                 </div>
                 <div className="map-container">
                     <div id='map' ref={elem => (this.mapContainer = elem)}></div>

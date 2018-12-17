@@ -11,7 +11,6 @@ class CustomInputComponent extends Component {
                     type="text" 
                     name={this.props.inputName} 
                     ref={this.props.fieldRef}
-                    // ref={this.props.ref}
                     onChange={this.props.handleInputChange}
                 />
             </div>
