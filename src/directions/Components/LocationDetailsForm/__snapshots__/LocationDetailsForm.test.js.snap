@@ -42,7 +42,9 @@ exports[`<LocationDetailsForm /> component should match the snapshot 1`] = `
     >
       Submit
     </button>
-    <button>
+    <button
+      onClick={[Function]}
+    >
       Reset
     </button>
   </div>
