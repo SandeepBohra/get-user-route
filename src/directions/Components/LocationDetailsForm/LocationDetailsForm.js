@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { googleMaps } from '../../Services/googleMap'
 import { DirectionInfo } from '../DirectionInfo/DirectionInfo'
+import { GooglePlacesAutocomplete } from '../../../Shared/Components/index'
 import './LocationDetailsForm.css'
 
 
@@ -36,12 +37,14 @@ class LocationDetailsForm extends Component {
     }
 
    enableSubmit = () => {
+       debugger
        const startingLocation = this.state.startingLocation
        const dropOffPoint = this.state.dropOffPoint
         return startingLocation && dropOffPoint
     }
 
     handleChange = e => {
+        debugger
         const {name, value} = e.target
         this.setState({
             [name]: value,
@@ -52,27 +55,23 @@ class LocationDetailsForm extends Component {
         const {routeDistance, routeTime} = this.props
         return (
             <div className="LocationDetailsForm">
-                <div className="form-control">
-                    <p>Starting location</p>
-                    <input type="text" 
-                        ref={elem => (this.originInput = elem)} 
-                        onChange={this.handleChange}
-                        name="startingLocation"
-                    />
-                </div>
-                <div className="form-control">
-                    <p>Drop-off point</p>
-                    <input type="text" 
-                        ref={elem => (this.destInput = elem)} 
-                        onChange={this.handleChange}
-                        name="dropOffPoint"
-                    />
-                </div>
+                <GooglePlacesAutocomplete 
+                    label="Strarting location"
+                    handleInputChange={this.handleChange}
+                    fieldRef={elem => (this.originInput = elem)}
+                    inputName="startingLocation"
+                />
+                <GooglePlacesAutocomplete 
+                    label="Drop-off point"
+                    handleInputChange={this.handleChange}
+                    fieldRef={elem => (this.destInput = elem)}
+                    inputName="dropOffPoint"
+                />
                 {this.props.showRouteDistAndTime ?
-                    <DirectionInfo 
-                        totalDistance={routeDistance}
-                        totalTime={routeTime}
-                    />
+                <DirectionInfo 
+                    totalDistance={routeDistance}
+                    totalTime={routeTime}
+                />
                 : null}
                 <div className="form-buttons">
                     <button 
