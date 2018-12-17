@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Direction /> component should match the snapshot 1`] = `
+<div
+  className="Direction"
+>
+  <div
+    className="location-details-form"
+  >
+    <div
+      className="LocationDetailsForm"
+    >
+      <div
+        className="GooglePlacesAutocomplete"
+      >
+        <p>
+          Strarting location
+        </p>
+        <input
+          name="startingLocation"
+          onChange={[Function]}
+          type="text"
+        />
+      </div>
+      <div
+        className="GooglePlacesAutocomplete"
+      >
+        <p>
+          Drop-off point
+        </p>
+        <input
+          name="dropOffPoint"
+          onChange={[Function]}
+          type="text"
+        />
+      </div>
+      <div
+        className="form-buttons"
+      >
+        <button
+          disabled={true}
+          onClick={[Function]}
+          style={
+            Object {
+              "marginRight": "30%",
+            }
+          }
+        >
+          Submit
+        </button>
+        <button>
+          Reset
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="error-container"
+  >
+    
+  </div>
+  <div
+    className="MapComponent"
+  >
+    <div
+      className="map-container"
+    >
+      <div
+        id="map"
+      />
+    </div>
+  </div>
+</div>
+`;
