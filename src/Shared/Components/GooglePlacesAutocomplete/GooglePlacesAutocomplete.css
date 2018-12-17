@@ -1,10 +1,10 @@
-.CustomInputComponent input{
+.GooglePlacesAutocomplete input{
     width: 80%;
     padding: 8px;
     border: 1px solid black;
 }
 
-.CustomInputComponent p {
+.GooglePlacesAutocomplete p {
     font-size: 16px;
     font-weight: 500;
 }
