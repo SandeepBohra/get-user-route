@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { googleMaps } from '../../Services/googleMap'
+import { googleMaps } from '../../Services/googleMapsService/googleMap'
 import { DirectionInfo } from '../DirectionInfo/DirectionInfo'
 import { GooglePlacesAutocomplete } from '../../../Shared/Components/index'
 import './LocationDetailsForm.css'

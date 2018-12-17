@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LocationDetailsForm from './Components/LocationDetailsForm/LocationDetailsForm';
-import { googleMaps } from './Services/googleMap';
+import { googleMaps } from './Services/googleMapsService/googleMap';
 import { getUserRouteAndToken } from './Services/mockAPIService/index';
 import { MOCK_API_ERROR } from './Constants/errorTypes';
 import { Loader, MapComponent } from '../Shared/Components/index'
