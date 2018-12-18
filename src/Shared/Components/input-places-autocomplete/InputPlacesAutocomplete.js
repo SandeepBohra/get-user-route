@@ -1,7 +1,40 @@
 import React, { Component } from 'react';
+import { googleMaps } from '../../../directions/services/google-maps/googleMap'
 import './InputPlacesAutocomplete.css'
 
 class InputPlacesAutocomplete extends Component {
+    inputAutoComplete;
+    constructor(props) {
+        super(props)
+        this.state = {
+            address: '',
+        }
+    }
+
+    componentDidMount() {
+        this.renderAutoComplete();
+    }
+
+    renderAutoComplete = async () => {
+        const maps = await this.props.googleMaps();
+        this.inputAutoComplete = new maps.places.Autocomplete(this.inputElem);
+        this.inputAutoComplete.addListener('place_changed', ()=>{
+            const place = this.inputAutoComplete.getPlace()
+            if (place) {
+                this.props.handleOnSelectAddress(place, this.props.inputName)
+            }
+            console.log(this.inputAutoComplete.getPlace())
+        })
+    };
+
+    componentDidUpdate() {
+        debugger
+        if(!this.props.location) {
+            this.inputElem.value = null
+        }
+    }
+
+
     render() {
         return(
             <div className="InputPlacesAutocomplete">
@@ -9,8 +42,7 @@ class InputPlacesAutocomplete extends Component {
                 <input 
                     type="text" 
                     name={this.props.inputName} 
-                    ref={this.props.fieldRef}
-                    onChange={this.props.handleInputChange}
+                    ref={elem => (this.inputElem = elem)}
                 />
             </div>
         )
@@ -18,3 +50,7 @@ class InputPlacesAutocomplete extends Component {
 }
 
 export default InputPlacesAutocomplete;
+
+InputPlacesAutocomplete.defaultProps = {
+    googleMaps,
+}

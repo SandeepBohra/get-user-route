@@ -6,33 +6,19 @@ import './LocationDetailsForm.css';
 
 
 class LocationDetailsForm extends Component {
-    originInput;
-    originInputAutoComplete;
-    destInputAutoComplete;
-    destInput;
     constructor() {
         super()
         this.state = {
             submitEnabled: false,
             startingLocation: '',
             dropOffPoint: '',
+            clearInputField: false,
         }
     }
 
-    renderAutoComplete = async () => {
-        const maps = await this.props.googleMaps();
-
-        this.originInputAutoComplete = new maps.places.Autocomplete(this.originInput);
-        this.destInputAutoComplete = new maps.places.Autocomplete(this.destInput);
-    };
-
-    componentDidMount() {
-        this.renderAutoComplete();
-    }
-
     handleSubmit = () => {
-        const startingPoint = this.originInputAutoComplete.getPlace();
-        const dropPoint = this.destInputAutoComplete.getPlace();
+        const startingPoint = this.state.startingLocation;
+        const dropPoint = this.state.dropOffPoint;
         this.props.sendLocationAndGetRoute(startingPoint, dropPoint)
     }
 
@@ -50,13 +36,20 @@ class LocationDetailsForm extends Component {
         })
     }
 
+    handleOnSelectAddress = (place, name) => {
+        this.setState({
+            [name]: place,
+        })
+    }
+
     clearInputFields = () => {
         this.setState({
             startingLocation: '',
             dropOffPoint: '',
         })
-        this.originInput.value = '';
-        this.destInput.value = '';
+        this.setState({
+            clearInputField: true,
+        })
     }
 
     resetLocationDetails = () => {
@@ -65,25 +58,27 @@ class LocationDetailsForm extends Component {
     }
 
     render() {
-        const {routeDistance, routeTime} = this.props
+        const { routeDetails } = this.props
         return (
             <div className="LocationDetailsForm">
                 <InputPlacesAutocomplete 
                     label="Strarting location"
-                    handleInputChange={this.handleChange}
-                    fieldRef={elem => (this.originInput = elem)}
+                    handleOnSelectAddress={this.handleOnSelectAddress}
+                    ref={elem => (this.originInput = elem)}
+                    location={this.state.startingLocation}
                     inputName="startingLocation"
                 />
                 <InputPlacesAutocomplete 
                     label="Drop-off point"
-                    handleInputChange={this.handleChange}
-                    fieldRef={elem => (this.destInput = elem)}
+                    handleOnSelectAddress={this.handleOnSelectAddress}
+                    ref={elem => (this.destInput = elem)}
+                    location={this.state.dropOffPoint}
                     inputName="dropOffPoint"
                 />
-                {this.props.showRouteDistAndTime ?
+                {routeDetails.showRouteDistAndTime ?
                 <DirectionInfo 
-                    totalDistance={routeDistance}
-                    totalTime={routeTime}
+                    totalDistance={routeDetails.routeDistance}
+                    totalTime={routeDetails.routeTime}
                 />
                 : null}
                 <div className="form-buttons">
