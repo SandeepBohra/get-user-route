@@ -1,4 +1,4 @@
-import { MOCK_API_DETAILS } from '../../Constants/apiURL';
+import { MOCK_API_DETAILS } from '../../constants/apiURL';
 import axios from 'axios';
 
 // post AJAX call to submit the entered locations by user

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { googleMaps } from '../../Services/googleMapsService/googleMap'
-import { DirectionInfo } from '../DirectionInfo/DirectionInfo'
-import { InputPlacesAutocomplete } from '../../../Shared/Components/index'
-import './LocationDetailsForm.css'
+import { googleMaps } from '../../services/google-maps/googleMap';
+import DirectionInfo from '../direction-info/DirectionInfo';
+import { InputPlacesAutocomplete } from '../../../shared/components/index';
+import './LocationDetailsForm.css';
 
 
 class LocationDetailsForm extends Component {

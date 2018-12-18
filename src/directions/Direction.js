@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import LocationDetailsForm from './Components/LocationDetailsForm/LocationDetailsForm';
-import { googleMaps } from './Services/googleMapsService/googleMap';
-import { getUserRouteAndToken } from './Services/mockAPIService/index';
-import { MOCK_API_ERROR } from './Constants/errorTypes';
-import { Loader, MapComponent } from '../Shared/Components/index'
+import LocationDetailsForm from './components/location-details-form/LocationDetailsForm';
+import { googleMaps } from './services/google-maps/googleMap';
+import { getUserRouteAndToken } from './services/mock-API/index';
+import { MOCK_API_ERROR } from './constants/errorTypes';
+import { Loader, MapComponent } from '../shared/components/index'
 import './Direction.css';
 
 

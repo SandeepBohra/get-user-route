@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Direction from './Directions/Direction'
+import Direction from './directions/Direction'
 import './App.css';
 
 class App extends Component {
