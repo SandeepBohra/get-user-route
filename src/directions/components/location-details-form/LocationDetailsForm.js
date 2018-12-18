@@ -75,7 +75,7 @@ class LocationDetailsForm extends Component {
                     location={this.state.dropOffPoint}
                     inputName="dropOffPoint"
                 />
-                {routeDetails.showRouteDistAndTime ?
+                {this.props.showRouteDistAndTime ?
                 <DirectionInfo 
                     totalDistance={routeDetails.routeDistance}
                     totalTime={routeDetails.routeTime}

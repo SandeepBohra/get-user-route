@@ -110,6 +110,7 @@ class Direction extends Component {
                 : null}
                 <LocationDetailsForm
                     sendLocationAndGetRoute={this.sendLocationAndGetRoute}
+                    showRouteDistAndTime={this.state.routeDetails.showRouteDistAndTime}
                     routeDetails={this.state.routeDetails}
                     resetExistingRouteInformation={this.resetExistingRouteInformation}
                 />
