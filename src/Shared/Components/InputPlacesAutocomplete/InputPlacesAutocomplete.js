@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './GooglePlacesAutocomplete.css'
+import './InputPlacesAutocomplete.css'
 
-class GooglePlacesAutocomplete extends Component {
+class InputPlacesAutocomplete extends Component {
     render() {
         return(
-            <div className="GooglePlacesAutocomplete">
+            <div className="InputPlacesAutocomplete">
                 <p>{this.props.label}</p>
                 <input 
                     type="text" 
@@ -17,4 +17,4 @@ class GooglePlacesAutocomplete extends Component {
     }
 }
 
-export default GooglePlacesAutocomplete;
+export default InputPlacesAutocomplete;

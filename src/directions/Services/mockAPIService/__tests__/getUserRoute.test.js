@@ -43,6 +43,7 @@ describe('getUserRoute() API should return route details', () => {
 
         expect(response).toBeDefined();
         expect(response.data.status).toEqual("success");
+        expect(response.data.total_distance).toBe(20000)
         getService.mockRestore();
     });
 

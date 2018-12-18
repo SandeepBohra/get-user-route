@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MapComponent from './MapComponent';
+import MapComponent from '../MapComponent';
 
 describe('<MapComponent /> component', () => {
   

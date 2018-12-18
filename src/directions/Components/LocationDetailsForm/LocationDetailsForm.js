@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { googleMaps } from '../../Services/googleMapsService/googleMap'
 import { DirectionInfo } from '../DirectionInfo/DirectionInfo'
-import { GooglePlacesAutocomplete } from '../../../Shared/Components/index'
+import { InputPlacesAutocomplete } from '../../../Shared/Components/index'
 import './LocationDetailsForm.css'
 
 
@@ -68,13 +68,13 @@ class LocationDetailsForm extends Component {
         const {routeDistance, routeTime} = this.props
         return (
             <div className="LocationDetailsForm">
-                <GooglePlacesAutocomplete 
+                <InputPlacesAutocomplete 
                     label="Strarting location"
                     handleInputChange={this.handleChange}
                     fieldRef={elem => (this.originInput = elem)}
                     inputName="startingLocation"
                 />
-                <GooglePlacesAutocomplete 
+                <InputPlacesAutocomplete 
                     label="Drop-off point"
                     handleInputChange={this.handleChange}
                     fieldRef={elem => (this.destInput = elem)}
