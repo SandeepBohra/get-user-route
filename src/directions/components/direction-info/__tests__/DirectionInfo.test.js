@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import DirectionInfo from './DirectionInfo';
+import DirectionInfo from '../DirectionInfo';
 
 describe('<DirectionInfo /> component', () => {
   

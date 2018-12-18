@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import LocationDetailsForm from './LocationDetailsForm';
+import LocationDetailsForm from '../LocationDetailsForm';
 
 describe('<LocationDetailsForm /> component', () => {
   
