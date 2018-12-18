@@ -15,9 +15,11 @@ class Direction extends Component {
         this.renderMap = {};
         this.state = {
             isLoading: false,
-            showRouteDistAndTime: false,
-            routeDistance: '',
-            routeTime: '',
+            routeDetails: {
+                showRouteDistAndTime: false,
+                routeDistance: '',
+                routeTime: '',
+            },
             errorMsg: '',
         }
     }
@@ -55,11 +57,16 @@ class Direction extends Component {
     }
 
     clearPerviousRoueteDetails = () => {
+        this.setState(prevState => ({
+            routeDetails: {
+                ...prevState.routeDetails,
+                routeDistance: '',
+                routeTime: '',
+                showRouteDistAndTime: false,
+            }
+        }))
         this.setState({
             errorMsg: '',
-            routeDistance: '',
-            routeTime: '',
-            showRouteDistAndTime: false,
         })
     }
     sendLocationAndGetRoute = async (orig, dest) => {
@@ -72,11 +79,14 @@ class Direction extends Component {
         });;
         this.showLoader(false)
         if(response && response.data.path) {
-            this.setState({
-                showRouteDistAndTime: true,
-                routeDistance: response.data.total_distance,
-                routeTime: response.data.total_time
-            })
+            this.setState(prevState => ({
+                routeDetails: {
+                    ...prevState.routeDetails,
+                    routeDistance: response.data.total_distance,
+                    routeTime: response.data.total_time,
+                    showRouteDistAndTime: true,
+                }
+            }))
             const { path } = response.data
             this.drawRouteOnMap(path);
         } else if(response && response.data.error) {
@@ -100,9 +110,7 @@ class Direction extends Component {
                 : null}
                 <LocationDetailsForm
                     sendLocationAndGetRoute={this.sendLocationAndGetRoute}
-                    showRouteDistAndTime={this.state.showRouteDistAndTime}
-                    routeDistance={this.state.routeDistance}
-                    routeTime={this.state.routeTime}
+                    routeDetails={this.state.routeDetails}
                     resetExistingRouteInformation={this.resetExistingRouteInformation}
                 />
                 </div>
