@@ -29,7 +29,6 @@ class LocationDetailsForm extends Component {
     }
 
     handleChange = e => {
-        debugger
         const {name, value} = e.target
         this.setState({
             [name]: value,

@@ -23,12 +23,10 @@ class InputPlacesAutocomplete extends Component {
             if (place) {
                 this.props.handleOnSelectAddress(place, this.props.inputName)
             }
-            console.log(this.inputAutoComplete.getPlace())
         })
     };
 
     componentDidUpdate() {
-        debugger
         if(!this.props.location) {
             this.inputElem.value = null
         }

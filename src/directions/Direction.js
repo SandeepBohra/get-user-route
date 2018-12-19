@@ -48,7 +48,6 @@ class Direction extends Component {
         }
         directionService.route(request, (response, status) => {
             if (status === 'OK') {
-                debugger
                 directionRenderer.setDirections(response);
             }
         });
