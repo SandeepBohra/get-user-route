@@ -3,7 +3,7 @@ import LocationDetailsForm from './components/location-details-form/LocationDeta
 import { googleMaps } from './services/google-maps/googleMap';
 import { getUserRouteAndToken } from './services/mock-API/index';
 import { MOCK_API_ERROR } from './constants/errorTypes';
-import { Loader, MapComponent } from '../shared/components/index'
+import { Loader } from '../shared/components/index'
 import './Direction.css';
 
 
@@ -27,35 +27,41 @@ class Direction extends Component {
         this.initializeGoogleMaps();
     }
     
+    // Initializing google maps with default props settings
     initializeGoogleMaps = async () => {
         const { googleMaps } = this.props
         this.googleMaps = await googleMaps();
         this.renderMap = new this.googleMaps.Map(this.mapContainer, this.props.mapSettings);
     }
 
-    drawRouteOnMap = (path) => {
+    // This method is drawing the route on the map after receving the map coordinates from the API
+    drawRouteOnMap = (route) => {
         const directionService = new this.googleMaps.DirectionsService();
         const directionRenderer = new this.googleMaps.DirectionsRenderer();
-        const origin = path[0];
-        const dest = path[path.length -1];
+        const origin = route[0];
+        const dest = route[route.length -1];
         directionRenderer.setMap(this.renderMap);
-        directionService.route({
+        const request = {
             origin: new this.googleMaps.LatLng(origin[0], origin[1]),
             destination: new this.googleMaps.LatLng(dest[0], dest[1]),
             travelMode: "DRIVING"
-            },  (response, status) => {
+        }
+        directionService.route(request, (response, status) => {
             if (status === 'OK') {
+                debugger
                 directionRenderer.setDirections(response);
             }
         });
     }
 
+    // the below method is used to show the loader for pending ajax state
     showLoader = (set) => {
         this.setState({
             isLoading: set
         })
     }
 
+    // resetting previous ruote detail information
     clearPerviousRoueteDetails = () => {
         this.setState(prevState => ({
             routeDetails: {
@@ -69,6 +75,8 @@ class Direction extends Component {
             errorMsg: '',
         })
     }
+
+    // calling Mock API to get the token and then using it to get the route details
     sendLocationAndGetRoute = async (orig, dest) => {
         this.showLoader(true)
         this.clearPerviousRoueteDetails()
@@ -96,6 +104,7 @@ class Direction extends Component {
         }
     }
 
+    // resetting all the data and re-initializing map
     resetExistingRouteInformation = () => {
         this.clearPerviousRoueteDetails();
         this.initializeGoogleMaps();
@@ -118,9 +127,9 @@ class Direction extends Component {
                 <div className="error-container">
                     {this.state.errorMsg}
                 </div>
-                <MapComponent 
-                    fieldRef={elem => (this.mapContainer = elem)}
-                />
+                <div className="map-container" >
+                    <div className="map" ref={elem => {this.mapContainer = elem}}></div>
+                </div>
             </div>
         )
     }

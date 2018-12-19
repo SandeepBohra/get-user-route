@@ -60,15 +60,11 @@ exports[`<Direction /> component should match the snapshot 1`] = `
     
   </div>
   <div
-    className="MapComponent"
+    className="map-container"
   >
     <div
-      className="map-container"
-    >
-      <div
-        id="map"
-      />
-    </div>
+      className="map"
+    />
   </div>
 </div>
 `;

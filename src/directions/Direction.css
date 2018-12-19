@@ -13,3 +13,12 @@
   font-size: 16px;
   font-weight: 500;
 }
+
+.map-container > .map {
+        margin: 10px;
+        top: 0%;
+        left: 25%;
+        position: absolute;
+        width: 70%;
+        height: 90%;
+}
