@@ -9,6 +9,7 @@ import './Direction.css';
 
 class Direction extends Component {
     mapContainer
+    directionRenderer
     constructor() {
         super();
         this.googleMaps = {};
@@ -32,23 +33,23 @@ class Direction extends Component {
         const { googleMaps } = this.props
         this.googleMaps = await googleMaps();
         this.renderMap = new this.googleMaps.Map(this.mapContainer, this.props.mapSettings);
+        this.directionRenderer = new this.googleMaps.DirectionsRenderer();
     }
 
     // This method is drawing the route on the map after receving the map coordinates from the API
     drawRouteOnMap = (route) => {
-        const directionService = new this.googleMaps.DirectionsService();
-        const directionRenderer = new this.googleMaps.DirectionsRenderer();
+        this.directionService = new this.googleMaps.DirectionsService();
         const origin = route[0];
         const dest = route[route.length -1];
-        directionRenderer.setMap(this.renderMap);
+        this.directionRenderer.setMap(this.renderMap);
         const request = {
             origin: new this.googleMaps.LatLng(origin[0], origin[1]),
             destination: new this.googleMaps.LatLng(dest[0], dest[1]),
             travelMode: "DRIVING"
         }
-        directionService.route(request, (response, status) => {
+        this.directionService.route(request, (response, status) => {
             if (status === 'OK') {
-                directionRenderer.setDirections(response);
+                this.directionRenderer.setDirections(response);
             }
         });
     }
@@ -106,7 +107,7 @@ class Direction extends Component {
     // resetting all the data and re-initializing map
     resetExistingRouteInformation = () => {
         this.clearPerviousRoueteDetails();
-        this.initializeGoogleMaps();
+        this.directionRenderer.setMap(null);
     }
 
     render() {
