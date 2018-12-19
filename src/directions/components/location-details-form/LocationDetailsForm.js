@@ -7,70 +7,59 @@ import './LocationDetailsForm.css';
 
 class LocationDetailsForm extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
             submitEnabled: false,
             startingLocation: '',
             dropOffPoint: '',
-            clearInputField: false,
         }
     }
 
     handleSubmit = () => {
-        const startingPoint = this.state.startingLocation;
-        const dropPoint = this.state.dropOffPoint;
-        this.props.sendLocationAndGetRoute(startingPoint, dropPoint)
+        const { startingPoint, dropPoint } = this.state;
+        this.props.sendLocationAndGetRoute(startingPoint, dropPoint);
     }
 
-   enableSubmit = () => {
-       const startingLocation = this.state.startingLocation
-       const dropOffPoint = this.state.dropOffPoint
-        return startingLocation && dropOffPoint
+    // Below method enables or disables the submit button
+    enableSubmit = () => {
+       const { startingLocation, dropOffPoint } = this.state;
+        return startingLocation && dropOffPoint;
     }
 
-    handleChange = e => {
-        const {name, value} = e.target
-        this.setState({
-            [name]: value,
-        })
-    }
-
+    // update states(startingLocation and DropOffPoint) on selecting the places from autocomplete
     handleOnSelectAddress = (place, name) => {
         this.setState({
             [name]: place,
         })
     }
 
+    // clear the values from form input fields
     clearInputFields = () => {
         this.setState({
             startingLocation: '',
             dropOffPoint: '',
         })
-        this.setState({
-            clearInputField: true,
-        })
     }
 
+    // Below method is used to reset the form inputs as well as reset the route on Map
     resetLocationDetails = () => {
         this.clearInputFields();
-        this.props.resetExistingRouteInformation()
+        this.props.resetExistingRouteInformation();
     }
 
     render() {
-        const { routeDetails } = this.props
+        const { routeDetails } = this.props;
         return (
             <div className="LocationDetailsForm">
                 <InputPlacesAutocomplete 
                     label="Strarting location"
                     handleOnSelectAddress={this.handleOnSelectAddress}
-                    ref={elem => (this.originInput = elem)}
                     location={this.state.startingLocation}
                     inputName="startingLocation"
                 />
                 <InputPlacesAutocomplete 
                     label="Drop-off point"
                     handleOnSelectAddress={this.handleOnSelectAddress}
-                    ref={elem => (this.destInput = elem)}
                     location={this.state.dropOffPoint}
                     inputName="dropOffPoint"
                 />
