@@ -86,24 +86,29 @@ class Direction extends Component {
             })
         });;
         this.toggleLoader(false)
-        if(response && response.data.path) {
-            this.setState(prevState => ({
-                routeDetails: {
-                    ...prevState.routeDetails,
-                    routeDistance: response.data.total_distance,
-                    routeTime: response.data.total_time,
-                    showRouteDistAndTime: true,
-                }
-            }))
+        if(response && response.data && response.data.path) {
+            this.updateRouteDetailsFromResponse(response);
             const { path } = response.data
             this.drawRouteOnMap(path);
-        } else if(response && response.data.error) {
+        } else if(response && response.data && response.data.error) {
             this.setState({
                 errorMsg: response.data.error
             })
         }
     }
 
+    // Below method updates the state for routeDetails like distance and time
+    updateRouteDetailsFromResponse = (response) => {
+        const { total_distance, total_time } = response.data
+        this.setState(prevState => ({
+            routeDetails: {
+                ...prevState.routeDetails,
+                routeDistance: total_distance,
+                routeTime: total_time,
+                showRouteDistAndTime: true,
+            }
+        }))
+    }
     // resetting all the data and re-initializing map
     resetExistingRouteInformation = () => {
         this.clearPerviousRoueteDetails();
