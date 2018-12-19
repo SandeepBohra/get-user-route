@@ -13,7 +13,7 @@ class Direction extends Component {
     constructor() {
         super();
         this.googleMaps = {};
-        this.renderMap = {};
+        this.map = {};
         this.state = {
             isLoading: false,
             routeDetails: {
@@ -32,7 +32,7 @@ class Direction extends Component {
     initializeGoogleMaps = async () => {
         const { googleMaps } = this.props
         this.googleMaps = await googleMaps();
-        this.renderMap = new this.googleMaps.Map(this.mapContainer, this.props.mapSettings);
+        this.map = new this.googleMaps.Map(this.mapContainer, this.props.mapSettings);
         this.directionRenderer = new this.googleMaps.DirectionsRenderer();
     }
 
@@ -41,7 +41,7 @@ class Direction extends Component {
         this.directionService = new this.googleMaps.DirectionsService();
         const origin = route[0];
         const dest = route[route.length -1];
-        this.directionRenderer.setMap(this.renderMap);
+        this.directionRenderer.setMap(this.map);
         const request = {
             origin: new this.googleMaps.LatLng(origin[0], origin[1]),
             destination: new this.googleMaps.LatLng(dest[0], dest[1]),
