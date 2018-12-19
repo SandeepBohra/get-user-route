@@ -54,7 +54,7 @@ class Direction extends Component {
     }
 
     // the below method is used to show the loader for pending ajax state
-    showLoader = (set) => {
+    toggleLoader = (set) => {
         this.setState({
             isLoading: set
         })
@@ -77,14 +77,14 @@ class Direction extends Component {
 
     // calling Mock API to get the token and then using it to get the route details
     sendLocationAndGetRoute = async (orig, dest) => {
-        this.showLoader(true)
+        this.toggleLoader(true)
         this.clearPerviousRoueteDetails()
         const response = await getUserRouteAndToken(orig, dest).catch(e => {
             this.setState({
                 errorMsg: MOCK_API_ERROR,
             })
         });;
-        this.showLoader(false)
+        this.toggleLoader(false)
         if(response && response.data.path) {
             this.setState(prevState => ({
                 routeDetails: {
