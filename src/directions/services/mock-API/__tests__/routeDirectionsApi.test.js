@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getUserRouteAndToken, getTokenFromAPI, getUserRoute } from '../routeDirectionsApi';
 
-describe("check api", () => {
+describe("check getUserRouteAndToken() function which is calling getToken and getRoute()", () => {
 
     const requestToken = 'some-token';
 
