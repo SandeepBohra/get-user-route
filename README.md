@@ -1,15 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Get User Route
 
-## How to configure the google map api key
+Application to draw route on google maps after submitting the start and drop-off locations.
+
+## Pre-Requisties
+
+Backend [mockApi](https://github.com/lalamove/challenge/tree/master/mockApi) should be running on the system as a supporting API.
+
+## Steps to configure the google map api key
+
 1) Create a .env file
 2) Create a new variable called 'REACT_APP_GOOGLE_MAP_API_KEY'
-3) Assign your google map api key to the above variable, for e.g
-    REACT_APP_GOOGLE_MAP_API_KEY=`your_google_map_key`
+3) Assign your google map api key to the above variable, as shown below
 
-## Steps to run the application
-1) After cloning/downloading the application, run 'npm install'
-2) Once the installation of packages completes, run 'npm start' to run the application
+```
+REACT_APP_GOOGLE_MAP_API_KEY = `Google map api key`
+```
 
-## Steps to run the tests
-1) run 'npm test' to run all the test files
+## Steps to run app
 
+```
+npm install
+npm start
+```
+
+## Tests
+
+Run `npm test` to run the tests
