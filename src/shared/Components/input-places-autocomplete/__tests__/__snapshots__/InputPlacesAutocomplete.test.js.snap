@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputPlacesAutocomplete /> component should match the snapshot 1`] = `
+<div
+  className="InputPlacesAutocomplete"
+>
+  <p />
+  <input
+    type="text"
+  />
+</div>
+`;
