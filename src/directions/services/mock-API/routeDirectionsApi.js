@@ -22,7 +22,7 @@ export const getUserRoute = async token => {
 export const getUserRouteAndToken = async (orig, dest) => {
     // let [token, response] = await Promise.all([getTokenFromAPI(orig, dest), getUserRoute(token)]);
     const token = await getTokenFromAPI(orig, dest);
-    const response = await getUserRoute(token);
+    let response = await getUserRoute(token);
 
     if (response && response.data.status === 'in progress') {
         response = await getUserRouteAndToken(orig, dest);
