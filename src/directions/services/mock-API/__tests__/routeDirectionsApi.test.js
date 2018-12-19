@@ -1,8 +1,17 @@
-import { getUserRoute } from '../index';
-import { MOCK_API_DETAILS } from '../../../Constants/apiURL'
-import axios from 'axios'
+import axios from 'axios';
+import { getTokenFromAPI, getUserRoute } from '../routeDirectionsApi';
 
-const requestToken = 'some-token'
+const requestToken = 'some-token';
+
+
+const mockResponseToken = {
+    token: 'some-token',
+};
+
+const requestPayload = {
+    origin: ["1", "2"],
+    destination: ["3", "4"],
+};
 
 const mockRouteResponse = {
     status: 'success',
@@ -24,13 +33,37 @@ const mockInProgressResponse = {
     status: 'in progress',
 }
 
-const url = MOCK_API_DETAILS.URL+MOCK_API_DETAILS.Route;
+const errorMessage = "Internal server error"
 
-const apiClient = axios.create({
-    baseURL: url,
+describe('get token from Mock API', () => { 
+    test('should receive token as response', async () => {
+        const postService = jest.spyOn(axios, 'post');
+        postService.mockImplementation(() =>
+            Promise.resolve({ data:  mockResponseToken})
+        );
+
+        const response = await getTokenFromAPI(requestPayload.origin, requestPayload.destination);
+        expect(response).toBeDefined();
+        expect(response).toBe("some-token");
+        postService.mockRestore();
+    });
+
+    test('error on failing of API', async () => {
+        const getService = jest.spyOn(axios, 'post');
+    
+        getService.mockImplementation(() => {
+            Promise.reject({
+                errorMsg: errorMessage,
+            })
+        })
+    
+        await getUserRoute(requestToken).catch((error) => {
+          expect(error.errorMsg).toBe(errorMessage);
+          getService.mockRestore();
+        });
+      });
 });
 
-const errorMessage = "Internal server error"
 
 describe('getUserRoute() API should return route details', () => { 
     test('should return route details', async () => {
