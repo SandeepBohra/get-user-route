@@ -76,15 +76,16 @@ describe("check getUserRouteAndToken() function which is calling getToken and ge
     test('check for failure of the gteUserRoute() API', async () => {
         const getService = jest.spyOn(axios, 'get');
         getService.mockImplementation(() =>
-            Promise.resolve({ data: mockFailureResponse })
+            Promise.reject({ data: mockFailureResponse })
         );
 
-        const response = await getUserRoute(requestToken);
-
-        expect(response).toBeDefined();
-        expect(response.data.status).toEqual("failure");
-        getService.mockRestore();
+        await getUserRoute(requestToken).catch(e => {
+            expect(e).toBeDefined();
+            expect(e.data.status).toEqual("failure");
         });
+
+        getService.mockRestore();
+    });
 
     test("Whether recusion occurs on 'in progress' state", async () => {
         const postService = jest.spyOn(axios, 'post');
@@ -120,7 +121,7 @@ describe("check getUserRouteAndToken() function which is calling getToken and ge
             return  Promise.resolve({data: sampleToken});
         });
 
-        const res = await getUserRouteAndToken({},{}).catch((errormsg) => {
+        const res = await getUserRouteAndToken({}, {}).catch((errormsg) => {
             expect(errormsg).toBe(errorMessage); // Should match server error;
             expect(postService).toHaveBeenCalledTimes(timesCalled);
         }); // Sending Sample Data
