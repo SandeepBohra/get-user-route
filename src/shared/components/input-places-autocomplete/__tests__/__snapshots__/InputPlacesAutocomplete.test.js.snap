@@ -2,7 +2,7 @@
 
 exports[`<InputPlacesAutocomplete /> component should match the snapshot 1`] = `
 <div
-  className="InputPlacesAutocomplete"
+  className="input-places-autocomplete"
 >
   <p />
   <input

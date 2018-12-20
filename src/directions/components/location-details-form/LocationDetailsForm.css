@@ -1,10 +1,10 @@
-.LocationDetailsForm input {
+.location-details-form input {
     width: 90%;
     padding: 8px;
     border: 1px solid black;
 }
 
-.LocationDetailsForm p {
+.location-details-form p {
     font-size: 16px;
     font-weight: 500;
 }

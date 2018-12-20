@@ -69,11 +69,9 @@ class Direction extends Component {
                 routeDistance: '',
                 routeTime: '',
                 showRouteDistAndTime: false,
-            }
-        }))
-        this.setState({
+            },
             errorMsg: '',
-        })
+        }))
     }
 
     // calling Mock API to get the token and then using it to get the route details
@@ -117,7 +115,7 @@ class Direction extends Component {
 
     render() {
         return (
-            <div className="Direction">
+            <div className="direction">
                 <div className="location-details-form">
                 {this.state.isLoading 
                 ? <Loader />

@@ -35,7 +35,7 @@ class InputPlacesAutocomplete extends Component {
 
     render() {
         return(
-            <div className="InputPlacesAutocomplete">
+            <div className="input-places-autocomplete">
                 <p>{this.props.label}</p>
                 <input 
                     type="text" 

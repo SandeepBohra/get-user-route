@@ -1,10 +1,10 @@
-.InputPlacesAutocomplete input{
+.input-places-autocomplete >input{
     width: 80%;
     padding: 8px;
     border: 1px solid black;
 }
 
-.InputPlacesAutocomplete p {
+.input-places-autocomplete p {
     font-size: 16px;
     font-weight: 500;
 }

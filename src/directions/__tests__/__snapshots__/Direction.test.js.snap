@@ -2,16 +2,16 @@
 
 exports[`<Direction /> component should match the snapshot 1`] = `
 <div
-  className="Direction"
+  className="direction"
 >
   <div
     className="location-details-form"
   >
     <div
-      className="LocationDetailsForm"
+      className="location-details-form"
     >
       <div
-        className="InputPlacesAutocomplete"
+        className="input-places-autocomplete"
       >
         <p>
           Strarting location
@@ -22,7 +22,7 @@ exports[`<Direction /> component should match the snapshot 1`] = `
         />
       </div>
       <div
-        className="InputPlacesAutocomplete"
+        className="input-places-autocomplete"
       >
         <p>
           Drop-off point

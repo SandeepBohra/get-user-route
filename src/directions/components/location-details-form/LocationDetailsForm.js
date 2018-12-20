@@ -50,7 +50,7 @@ class LocationDetailsForm extends Component {
     render() {
         const { routeDetails } = this.props;
         return (
-            <div className="LocationDetailsForm">
+            <div className="location-details-form">
                 <InputPlacesAutocomplete 
                     label="Strarting location"
                     handleOnSelectAddress={this.handleOnSelectAddress}

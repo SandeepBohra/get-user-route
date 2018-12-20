@@ -4,7 +4,7 @@ import './DirectionInfo.css'
 class DirectionInfo extends React.PureComponent {
     render() {
         return (
-            <div className="DirectionInfo">
+            <div className="direction-info">
                 <div className="route-distance">
                     <label>{`Total distance: ${this.props.totalDistance}`}</label>
                 </div>

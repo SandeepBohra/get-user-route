@@ -2,7 +2,7 @@
 
 exports[`<DirectionInfo /> component should match the snapshot 1`] = `
 <div
-  className="DirectionInfo"
+  className="direction-info"
 >
   <div
     className="route-distance"
