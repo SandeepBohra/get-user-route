@@ -1,4 +1,4 @@
-import { baseUrl } from '../../shared/constants/baseUrl';
+import { baseUrl } from '../../shared/constants/apiConfig';
 
 export const MOCK_API_DETAILS = {
     url: baseUrl,
