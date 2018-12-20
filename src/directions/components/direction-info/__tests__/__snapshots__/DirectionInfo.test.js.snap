@@ -4,16 +4,12 @@ exports[`<DirectionInfo /> component should match the snapshot 1`] = `
 <div
   className="direction-info"
 >
-  <div
-    className="route-distance"
-  >
+  <div>
     <label>
       Total distance: undefined
     </label>
   </div>
-  <div
-    className="route-time"
-  >
+  <div>
     <label>
       Total time: undefined
     </label>
