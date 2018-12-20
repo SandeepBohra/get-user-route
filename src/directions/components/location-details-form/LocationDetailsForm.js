@@ -65,12 +65,13 @@ class LocationDetailsForm extends Component {
                     location={this.state.dropOffPoint}
                     inputName="dropOffPoint"
                 />
-                {this.props.showRouteDistAndTime ?
-                <DirectionInfo 
-                    totalDistance={routeDetails.routeDistance}
-                    totalTime={routeDetails.routeTime}
-                />
-                : null}
+                {
+                  this.props.showRouteDistAndTime 
+                  ? <DirectionInfo 
+                      totalDistance={routeDetails.routeDistance}
+                      totalTime={routeDetails.routeTime} />
+                  : null
+                }
                 <div className="form-buttons">
                     <button 
                         disabled={!this.enableSubmit()} 

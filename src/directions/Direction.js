@@ -24,6 +24,7 @@ class Direction extends Component {
             errorMsg: '',
         }
     }
+    
     componentDidMount() {
         this.initializeGoogleMaps();
     }
@@ -117,9 +118,7 @@ class Direction extends Component {
         return (
             <div className="direction">
                 <div className="location-details-form">
-                {this.state.isLoading 
-                ? <Loader />
-                : null}
+                { this.state.isLoading ? <Loader /> : null }
                 <LocationDetailsForm
                     sendLocationAndGetRoute={this.sendLocationAndGetRoute}
                     showRouteDistAndTime={this.state.routeDetails.showRouteDistAndTime}

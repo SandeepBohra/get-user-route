@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { MOCK_API_DETAILS, apiStatus } from '../../constants/apiURL';
+import { MOCK_API_DETAILS, apiStatus } from '../../constants/mockApiConfig';
 
 
 // post AJAX call to submit the entered locations by user
 export const getTokenFromAPI = async (orig, dest) => {
-    const url = MOCK_API_DETAILS.url+MOCK_API_DETAILS.route;
+    const url = MOCK_API_DETAILS.url + MOCK_API_DETAILS.route;
 
     const response = await axios.post(url, {orig, dest});
     return response.data.token;
