@@ -1,25 +1,23 @@
-import * as googleMap from '../googleMap';
+import * as MapService from '../googleMap';
 import { googleMaps } from '../googleMap';
 
-let google;
+describe("check if the google maps api is returning google object", () => {
 
-const googleMapObj = {
-    someMethod: () => {
+    test("whether googleMaps() method returns a valid Object", async () => {
+        const mapName = 'Google Maps';
+        const google = { maps: mapName }; // Sample Object
 
-    }
-}
-describe("check if the google maps api is returning google object",() => {
-    test("testing google map API", async () => {
-        const googleMapService = jest.spyOn(googleMap, "googleMaps");
-        googleMapService.mockImplementation(() => {
-            if(!google)
-            return Promise.resolve(googleMapObj);
-            else
-            return Promise.resolve(google)
-        })
-        const response = await googleMaps();
-        console.log(response)
-        expect(response).toBeTruthy();
-        expect(response).toBeDefined();
+        const mapsMethod = jest.spyOn(MapService, "googleMaps");
+
+        mapsMethod.mockImplementation(() => {
+            return Promise.resolve(google);
+        });
+
+        const mapObject = await googleMaps();
+
+        expect(mapObject).toBeTruthy();
+        expect(mapObject.maps).toBe(mapName);
+
+        mapsMethod.mockRestore();
     });
 })
