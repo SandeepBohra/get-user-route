@@ -2,8 +2,18 @@ import GoogleMapsLoader from 'google-maps';
 
 const googleAPIKey = process.env.REACT_APP_GOOGLE_MAP_API_KEY
 
+const checkIfGoogleApiKeyAvailable = () => {
+    if(!googleAPIKey) {
+        alert("Google API key not found, please refer readme.md for more information!!");
+    } else {
+        return true;
+    }
+}
+
 const initializeGoogleMapSettings = () => {
-    GoogleMapsLoader.KEY = googleAPIKey;
+    if(checkIfGoogleApiKeyAvailable()) {
+        GoogleMapsLoader.KEY = googleAPIKey;
+    }
     GoogleMapsLoader.LIBRARIES = ['geometry', 'places'];
 }
 
