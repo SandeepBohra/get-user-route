@@ -18,6 +18,8 @@ describe("check if the google maps api is returning google object",() => {
             return Promise.resolve(google)
         })
         const response = await googleMaps();
+        console.log(response)
         expect(response).toBeTruthy();
+        expect(response).toBeDefined();
     });
 })
