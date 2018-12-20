@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { googleMaps } from '../../../directions/services/google-maps/googleMap'
 import './InputPlacesAutocomplete.css'
 
+// Component which shows suggestions of places as user starts to type in the input field
 class InputPlacesAutocomplete extends Component {
     inputAutoComplete;
     constructor(props) {
@@ -15,9 +16,11 @@ class InputPlacesAutocomplete extends Component {
         this.renderAutoComplete();
     }
 
+    // The below method is used to suggest places as the user starts typing in the inputs
     renderAutoComplete = async () => {
         const maps = await this.props.googleMaps();
         this.inputAutoComplete = new maps.places.Autocomplete(this.inputElem);
+        // Below event gets invloked if the user selects any place from the autocomplete dropdown
         this.inputAutoComplete.addListener('place_changed', ()=>{
             const place = this.inputAutoComplete.getPlace()
             if (place) {
@@ -27,6 +30,7 @@ class InputPlacesAutocomplete extends Component {
     };
 
     componentDidUpdate() {
+        // The below logic is used to clear out the input field values
         if(!this.props.location) {
             this.inputElem.value = null
         }

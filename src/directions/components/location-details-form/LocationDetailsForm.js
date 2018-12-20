@@ -5,6 +5,8 @@ import { InputPlacesAutocomplete } from '../../../shared/components/index';
 import './LocationDetailsForm.css';
 
 
+// This component is used to get the start and drop off location from the user and also to submit the locations to
+// the API to get the path details
 class LocationDetailsForm extends Component {
     constructor() {
         super();
