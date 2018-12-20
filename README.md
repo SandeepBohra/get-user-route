@@ -8,12 +8,12 @@ Backend [mockApi](https://github.com/lalamove/challenge/tree/master/mockApi) sho
 
 ## Steps to configure the google map api key
 
-1) Create a .env file
+1) Create a .env file in the root directory of the application
 2) Create a new variable called 'REACT_APP_GOOGLE_MAP_API_KEY'
 3) Assign your google map api key to the above variable, as shown below
 
 ```
-REACT_APP_GOOGLE_MAP_API_KEY = `Google map api key`
+REACT_APP_GOOGLE_MAP_API_KEY = <Google map api key>
 ```
 
 ## Steps to run app
