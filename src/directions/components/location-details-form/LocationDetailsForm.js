@@ -27,6 +27,12 @@ class LocationDetailsForm extends Component {
         return startingLocation && dropOffPoint;
     }
 
+    // Method to enable or disable button if input fields have some value
+    enableReset = () => {
+        const { startingLocation, dropOffPoint } = this.state;
+        return startingLocation || dropOffPoint;
+    }
+
     // update states(startingLocation and DropOffPoint) on selecting the places from autocomplete
     handleOnSelectAddress = (place, name) => {
         this.setState({
@@ -77,6 +83,7 @@ class LocationDetailsForm extends Component {
                         style={{marginRight: `30%`}} 
                         onClick={this.handleSubmit}>Submit</button>
                     <button 
+                        disabled={!this.enableReset()}
                         onClick={this.resetLocationDetails}>Reset</button>
                 </div>
             </div>
