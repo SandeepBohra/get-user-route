@@ -7,17 +7,15 @@ const checkIfGoogleApiKeyAvailable = () => {
     if(!googleAPIKey) {
         alert("Google API key not found, please refer readme.md for more information!!");
     } else {
-        return true;
+        GoogleMapsLoader.KEY = googleAPIKey;
     }
 }
 
 // This method is used to initialize google maps with settings
 const initializeGoogleMapSettings = () => {
-    if(checkIfGoogleApiKeyAvailable()) {
-        GoogleMapsLoader.KEY = googleAPIKey;
-        GoogleMapsLoader.LIBRARIES = ['geometry', 'places'];
-    }
+    checkIfGoogleApiKeyAvailable();
     
+    GoogleMapsLoader.LIBRARIES = ['geometry', 'places'];    
 }
 
 initializeGoogleMapSettings();
