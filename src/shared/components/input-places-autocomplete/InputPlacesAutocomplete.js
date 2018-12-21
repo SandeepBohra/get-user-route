@@ -36,6 +36,7 @@ class InputPlacesAutocomplete extends Component {
         }
     }
 
+    // The below method ensures not to submit the empty values to the API
     handleOnChange = (e) => {
         const userInput = e.target.value.trim();
 
@@ -52,6 +53,7 @@ class InputPlacesAutocomplete extends Component {
                     type="text" 
                     name={this.props.inputName}
                     ref={elem => (this.inputElem = elem)}
+                    onChange={this.handleOnChange}
                 />
             </div>
         )
