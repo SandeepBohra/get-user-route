@@ -13,6 +13,17 @@
     padding: 10px;
     font-size: 16px;
     margin-top: 50px;
+    cursor: pointer;
+    border: none;
+    transition: background 300ms;
+    background-color:  rgba(190,224,255, .6);
+    border-radius: 3px;
+}
+
+.form-buttons button:disabled {
+    cursor: default;
+    background-color: #f4f4f4;
+    transition: background 300ms;
 }
 
 .route-details {
