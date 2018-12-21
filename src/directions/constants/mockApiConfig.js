@@ -5,6 +5,6 @@ export const MOCK_API_DETAILS = {
     route: "/route",
 }
 
-export const apiStatus = {
+export const API_STATUS = {
     inProgress: "in progress",
 }

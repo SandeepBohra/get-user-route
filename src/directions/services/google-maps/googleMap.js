@@ -15,8 +15,9 @@ const checkIfGoogleApiKeyAvailable = () => {
 const initializeGoogleMapSettings = () => {
     if(checkIfGoogleApiKeyAvailable()) {
         GoogleMapsLoader.KEY = googleAPIKey;
+        GoogleMapsLoader.LIBRARIES = ['geometry', 'places'];
     }
-    GoogleMapsLoader.LIBRARIES = ['geometry', 'places'];
+    
 }
 
 initializeGoogleMapSettings();
