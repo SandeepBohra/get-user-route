@@ -12,6 +12,7 @@ exports[`<LocationDetailsForm /> component should match the snapshot 1`] = `
     </p>
     <input
       name="startingLocation"
+      onChange={[Function]}
       type="text"
     />
   </div>
@@ -23,6 +24,7 @@ exports[`<LocationDetailsForm /> component should match the snapshot 1`] = `
     </p>
     <input
       name="dropOffPoint"
+      onChange={[Function]}
       type="text"
     />
   </div>
