@@ -36,6 +36,13 @@ class InputPlacesAutocomplete extends Component {
         }
     }
 
+    handleOnChange = (e) => {
+        const userInput = e.target.value.trim();
+
+        if (!Boolean(userInput)) {
+            this.props.handleOnSelectAddress('', this.props.inputName);
+        }  
+    }
 
     render() {
         return(
@@ -43,7 +50,8 @@ class InputPlacesAutocomplete extends Component {
                 <p>{this.props.label}</p>
                 <input 
                     type="text" 
-                    name={this.props.inputName} 
+                    name={this.props.inputName}
+                    onChange={this.handleOnChange}
                     ref={elem => (this.inputElem = elem)}
                 />
             </div>
