@@ -11,15 +11,14 @@ class LocationDetailsForm extends Component {
     constructor() {
         super();
         this.state = {
-            submitEnabled: false,
             startingLocation: '',
             dropOffPoint: '',
         }
     }
 
     handleSubmit = () => {
-        const { startingPoint, dropPoint } = this.state;
-        this.props.sendLocationAndGetRoute(startingPoint, dropPoint);
+        const { startingLocation, dropOffPoint } = this.state;
+        this.props.sendLocationAndGetRoute(startingLocation, dropOffPoint);
     }
 
     // Below method enables or disables the submit button
@@ -54,7 +53,7 @@ class LocationDetailsForm extends Component {
         return (
             <div className="location-details-form">
                 <InputPlacesAutocomplete 
-                    label="Strarting location"
+                    label="Starting location"
                     handleOnSelectAddress={this.handleOnSelectAddress}
                     location={this.state.startingLocation}
                     inputName="startingLocation"

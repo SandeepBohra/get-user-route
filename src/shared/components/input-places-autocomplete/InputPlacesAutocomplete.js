@@ -51,7 +51,6 @@ class InputPlacesAutocomplete extends Component {
                 <input 
                     type="text" 
                     name={this.props.inputName}
-                    onChange={this.handleOnChange}
                     ref={elem => (this.inputElem = elem)}
                 />
             </div>
