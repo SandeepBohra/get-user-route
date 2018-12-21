@@ -14,7 +14,7 @@ exports[`<Direction /> component should match the snapshot 1`] = `
         className="input-places-autocomplete"
       >
         <p>
-          Strarting location
+          Starting location
         </p>
         <input
           name="startingLocation"
@@ -49,6 +49,7 @@ exports[`<Direction /> component should match the snapshot 1`] = `
           Submit
         </button>
         <button
+          disabled={true}
           onClick={[Function]}
         >
           Reset
